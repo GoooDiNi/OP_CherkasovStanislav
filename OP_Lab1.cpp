@@ -19,13 +19,13 @@ int main(void)
 		S = sqrt(p * (p - a) * (p - b) * (p - c));
 
 		//calculate and output the bisectors
-		cout << "\The bisectors:\n";
+		cout << "\nThe bisectors:\n";
 		printf("l1=%5.3f\n", sqrt(a * b * P * (a + b - c)) / (a + b));
 		printf("l2=%5.3f\n", sqrt(b * c * P * (b + c - a)) / (b + c));
 		printf("l3=%5.3f\n", sqrt(c * a * P * (c + a - b)) / (c + a));
 
 		//calculate and output the radii
-		cout << "\The radii:\n";
+		cout << "\nThe radii:\n";
 		printf("R=%5.3f\n", (a * b * c) / (4 * S));
 		printf("r=%5.3f\n", (2 * S) / P);
 	}
