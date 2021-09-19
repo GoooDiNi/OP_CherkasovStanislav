@@ -4,8 +4,6 @@
 using namespace std;
 int main(void)
 {
-	setlocale(LC_ALL, "Ukrainian");
-	
 	//input
 	float a, b, c, P, p, S;
 	cout << "a="; cin >> a;
