@@ -20,10 +20,10 @@ for i in nums:
         print(nums.index(i) + 1, ') ', "{0:.10f}".format(i), sep='')
     else:
         ans = 0
-        format_error = 0
+        rounding_error = 0
         for j in range(1, 11):
             ans += floor(abs(i) * (10 ** j) % 10)
         if floor(abs(i) * (10 ** (j + 1)) % 10) >= 5:
-            format_error = 0.1 ** 10
-        print(nums.index(i) + 1, ') ', "{0:.10f}".format(i + format_error), ' --> ', ans, sep='')
+            rounding_error = 0.1 ** 10
+        print(nums.index(i) + 1, ') ', "{0:.10f}".format(i + rounding_error), ' --> ', ans, sep='')
         nums[nums.index(i)] = ans
