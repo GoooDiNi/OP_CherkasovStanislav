@@ -1,4 +1,4 @@
-    #include <iostream>
+ #include <iostream>
     #include <string>
     #include <random>
 
@@ -21,28 +21,26 @@
     int main()
     {
         int n = correct_input("Define the number of values in array: ");
-        string* nums = new string[n];
+        float* nums = new float[n];
         for (int i = 0; i < n; i++)
         {
-            nums[i] = to_string(100 - static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 199)));
-            cout << '\n' << i + 1 << ") " << nums[i];
-            if (nums[i][0] == '-')
+            nums[i] = 100 - static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 199));
+            cout << '\n' << i + 1 << ") ";
+            double rounding_error = 0;
+            if(fmod(floor(abs(nums[i]) * (pow(10, (11)))), 10) >= 5)
             {
-                bool adding = false;
+                rounding_error = pow(0.1, 10);
+            }
+            printf("%.10f", nums[i] + rounding_error);
+            if (nums[i] < 0)
+            {
                 int ans = 0;
-                for (int ii = 0; ii < nums[i].size(); ii++)
+                for (int j = 1; j < 11; j++)
                 {
-                    if (adding)
-                    {
-                        ans += nums[i][ii] - '0';
-                    }
-                    if (nums[i][ii] == '.')
-                    {
-                        adding = true;
-                    }
+                    ans += fmod(floor(abs(nums[i]) * (pow(10, j))), 10);
                 }
                 cout << " --> " << ans;
-                nums[i] = to_string(ans);
+                nums[i] = ans;
             }
         }
         cout << '\n';
