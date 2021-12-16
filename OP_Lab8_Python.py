@@ -18,6 +18,7 @@ def print_matrix(m):
             print(numb, end='')
         print()
 
+        
 size = correct_input('\nM is an NxN matrix. Define N: ', int)
 matrix = []
 
