@@ -1,4 +1,5 @@
 from random import uniform as randreal
+from math import floor
 
 
 def correct_input(txt, var_type):
@@ -16,14 +17,13 @@ for i in range(n):
 	nums.append(randreal(-100, 100))
 for i in nums:
     if i > 0:
-        print(nums.index(i) + 1, ') ', i, sep='')
+        print(nums.index(i) + 1, ') ', "{0:.10f}".format(i), sep='')
     else:
-        adding = False
         ans = 0
-        for ii in str(i):
-            if adding:
-                ans += int(ii)
-            if ii == '.':
-                adding = True
-        print(nums.index(i) + 1, ') ', i, ' --> ', ans, sep='')
+        format_error = 0
+        for j in range(1, 11):
+            ans += floor(abs(i) * (10 ** j) % 10)
+        if floor(abs(i) * (10 ** (j + 1)) % 10) >= 5:
+            format_error = 0.1 ** 10
+        print(nums.index(i) + 1, ') ', "{0:.10f}".format(i + format_error), ' --> ', ans, sep='')
         nums[nums.index(i)] = ans
