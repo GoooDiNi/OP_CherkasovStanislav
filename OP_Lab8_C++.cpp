@@ -1,8 +1,10 @@
+  
 #include <iostream>
 #include <string>
 #include <time.h>
 
 using namespace std;
+
 
 int correct_input(string text)
 {
@@ -18,53 +20,68 @@ int correct_input(string text)
     return(a);
 }
 
-int main()
+
+void matrix_init(int** m, int size)
 {
-    srand(time(NULL));
-    int size = correct_input("\nM is an NxN matrix. Define N: ");
-    int** matrix;
-
-    cout << "\nThe initial matrix:\n";
-    matrix = new int* [size];
     for (int i = 0; i < size; i++)
     {
-        matrix[i] = new int[size];
+        m[i] = new int[size];
         for (int j = 0; j < size; j++)
         {
-            matrix[i][j] = rand() % 18 - 9;
-            if (matrix[i][j] >= 0)
-            {
-                cout << ' ';
-            }
-            cout << matrix[i][j];
+            m[i][j] = rand() % 18 - 9;
         }
-        cout << '\n';
     }
+}
 
+
+void modify_matrix(int** m, int size)
+{
     for (int i = 0; i < size; i++)
     {
         for (int j = 0; j < size; j++)
         {
-            if (matrix[i][j] == 0)
+            if (m[i][j] == 0)
             {
                 for (int k = 0; k < size; k++)
                 {
-                    matrix[k][j] = matrix[k][k];
+                    m[k][j] = m[k][k];
                 }
             }
         }
     }
+}
 
-    cout << "\nThe modified matrix:\n";
-    for (int i = 0; i < size; i++)
+
+void cout_matrix(int** m, int size)
+{
+    for (int line = 0; line < size; line++)
     {
-        for (int j = 0; j < size; j++)
+        for (int numb = 0; numb < size; numb++)
         {
-            if (matrix[i][j] >= 0)
+            if (m[line][numb] >= 0)
             {
                 cout << ' ';
-            cout <<  matrix[i][j];
+            }
+            cout << m[line][numb];
         }
         cout << '\n';
-    }
+    }  
+}
+
+
+int main()
+{
+    srand(time(NULL));
+    int size = correct_input("\nM is an NxN matrix. Define N: ");
+    int** matrix = new int* [size];
+    
+    matrix_init(matrix, size);
+    
+    cout << "\nThe initial matrix:\n";
+    cout_matrix(matrix, size);
+    
+    modify_matrix(matrix, size);
+
+    cout << "\nThe modified matrix:\n";
+    cout_matrix(matrix, size);
 }
